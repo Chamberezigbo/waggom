@@ -1,0 +1,92 @@
+openapi: 3.1.0
+info:
+  title: Church Project API
+  version: 1.0.0
+  description: Minimal admin auth API (single admin).
+
+servers:
+  - url: https://api.example.com
+
+paths:
+  /auth/admin/login:
+    post:
+      summary: Admin login
+      description: Authenticate the single admin and return an access token.
+      tags: [Auth]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AdminLoginRequest"
+            examples:
+              example:
+                value:
+                  email: admin@church.local
+                  password: ChangeMe123!
+      responses:
+        "200":
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminLoginResponse"
+              examples:
+                example:
+                  value:
+                    accessToken: "eyJhbGciOi..."
+                    tokenType: "Bearer"
+                    expiresIn: 3600
+        "401":
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              examples:
+                example:
+                  value:
+                    error: "invalid_credentials"
+                    message: "Email or password is incorrect."
+
+components:
+  schemas:
+    AdminLoginRequest:
+      type: object
+      required: [email, password]
+      additionalProperties: false
+      properties:
+        email:
+          type: string
+          format: email
+          description: Admin email (single admin account).
+          examples: ["admin@church.local"]
+        password:
+          type: string
+          format: password
+          minLength: 8
+          description: Admin password.
+    AdminLoginResponse:
+      type: object
+      required: [accessToken, tokenType, expiresIn]
+      additionalProperties: false
+      properties:
+        accessToken:
+          type: string
+          description: JWT or opaque token.
+        tokenType:
+          type: string
+          enum: [Bearer]
+        expiresIn:
+          type: integer
+          description: Token lifetime in seconds.
+          minimum: 1
+    ErrorResponse:
+      type: object
+      required: [error, message]
+      additionalProperties: false
+      properties:
+        error:
+          type: string
+        message:
+          type: string

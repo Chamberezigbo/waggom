@@ -24,6 +24,14 @@ import{
     deleteTestimonyController
 } from '../../controller/admin/testimonyAdminController.js';
 
+import{
+    listAdmissionsController,
+    getAdmissionController,
+    approveAdmissionController,
+    rejectAdmissionController,
+    deleteAdmissionController
+} from '../../controller/admin/admissionAdminController.js';
+
 import { requireAdmin } from '../../middleware/auth.js';
 
 const router = express.Router();
@@ -50,5 +58,11 @@ router.get('/testimonies/:id', requireAdmin, getTestimonyController);
 router.post('/testimonies/:id/approve', requireAdmin, approveTestimonyController);
 router.delete('/testimonies/:id', requireAdmin, deleteTestimonyController);
 
+// Admission management routes
+router.get('/admissions', requireAdmin, listAdmissionsController);
+router.get('/admissions/:id', requireAdmin, getAdmissionController);
+router.post('/admissions/:id/approve', requireAdmin, approveAdmissionController);
+router.post('/admissions/:id/reject', requireAdmin, rejectAdmissionController);
+router.delete('/admissions/:id', requireAdmin, deleteAdmissionController);
 
 export default router;

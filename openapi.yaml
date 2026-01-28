@@ -5,7 +5,7 @@ info:
   description: Minimal admin auth API (single admin).
 
 servers:
-  - url: http://localhost:3000
+  - url: http://localhost:3000/api
     description: Local development server
 
 paths:
@@ -324,6 +324,99 @@ paths:
       responses:
         '201':
           description: Admission submitted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdmissionResponse'
+
+  /admin/admissions:
+    get:
+      summary: List admissions (admin)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - in: query
+          name: status
+          schema:
+            type: string
+            enum: [pending, approved, rejected]
+          description: Filter by status
+      responses:
+        '200':
+          description: Admission list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success: { type: boolean }
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AdmissionResponse'
+
+  /admin/admissions/{id}:
+    get:
+      summary: Get admission by id (admin)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Admission
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdmissionResponse'
+    delete:
+      summary: Delete admission (admin)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success: { type: boolean }
+
+  /admin/admissions/{id}/approve:
+    post:
+      summary: Approve admission (admin)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Approved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdmissionResponse'
+
+  /admin/admissions/{id}/reject:
+    post:
+      summary: Reject admission (admin)
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Rejected
           content:
             application/json:
               schema:

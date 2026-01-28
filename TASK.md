@@ -25,8 +25,8 @@
 
 ## 🔥 Immediate Focus
 - [ ] 
-- [ ]  create endpoint for admin to view approve reject delete admission request
-- [ ] setup a build to init ang generate prisma for chanel environment for build command 
+- [ ]  
+- [ ]
 
 ## 🚧 In Progress
 - [ ] create endpoint to allow users apply for admission(Programme Level
@@ -50,8 +50,8 @@ Please list all institutions attended, beginning with the most recent Institutio
 - [x] handle cors for this system 
 - [x]create endpoint for admin to view testimony approve or delete filter by pending and approved 
 - [x]create endpoint for users to share testimony name,contact email, testimony and photo without auth(save the photo in upload folder then url to db and handle the folder to be public  )
-- [x]
-- [x]
+- [x] setup a build to init ang generate prisma for cPanel and mysql environment for build command 
+- [x] create endpoint for admin to view approve reject delete admission request
 
 ```
 

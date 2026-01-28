@@ -58,7 +58,7 @@ model Admission {
   firstname         String
   title             String?
   otherNames        String?
-  dateOfBirth       DateTime
+  dateOfBirth       String
   placeOfBirth      String
   gender            String
   presentAddress    String

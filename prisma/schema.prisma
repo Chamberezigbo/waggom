@@ -6,11 +6,11 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model Admin {
@@ -18,4 +18,109 @@ model Admin {
   email     String   @unique
   password  String
   createdAt DateTime @default(now())
+}
+
+model News {
+  id        String   @id @default(cuid())
+  title     String
+  summary   String?
+  category  String?
+  body      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  title       String
+  date        DateTime
+  location    String
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Testimony {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  photoUrl  String?
+  status    String   @default("pending") // pending, approved, rejected
+  createdAt DateTime @default(now())
+}
+
+model Admission {
+  id                String   @id @default(cuid())
+  programmeLevel    String
+  programmeChoice   String
+  surname           String
+  firstname         String
+  title             String?
+  otherNames        String?
+  dateOfBirth       DateTime
+  placeOfBirth      String
+  gender            String
+  presentAddress    String
+  email             String
+  phone             String
+  permanentAddress  String
+  postalAddress     String
+  nationality       String
+  nativeLanguage    String
+  placeDiffNationality Boolean
+  maritalStatus     String
+  religion          String
+  denomination      String
+  parentGuardian    String
+  emergencyContact  String
+  emergencyPhone    String
+  nextOfKin         String
+  nextOfKinPhone    String
+  financeInfo       String
+  healthInfo        String
+  description       String?
+  academicReferee   String
+  academicProfession String
+  academicInstitution String
+  academicAddress   String
+  academicPhone     String
+  academicEmail     String
+  clergyReferee     String
+  clergyPosition    String
+  clergyChurch      String
+  clergyAddress     String
+  clergyPhone       String
+  clergyEmail       String
+  applicantSignature String
+  applicantDate     DateTime
+  status            String   @default("pending") // pending, approved, rejected
+  createdAt         DateTime @default(now())
+  education         Education[]
+  certificates      Certificate[]
+  passportPhotos    PassportPhoto[] // <-- add this line
+}
+
+model Education {
+  id           String   @id @default(cuid())
+  admissionId  String
+  institution  String
+  from         DateTime
+  to           DateTime
+  qualification String
+  admission    Admission @relation(fields: [admissionId], references: [id])
+}
+
+model Certificate {
+  id           String   @id @default(cuid())
+  admissionId  String
+  fileUrl      String
+  admission    Admission @relation(fields: [admissionId], references: [id])
+}
+
+model PassportPhoto {
+  id           String   @id @default(cuid())
+  admissionId  String
+  fileUrl      String
+  admission    Admission @relation(fields: [admissionId], references: [id])
 }

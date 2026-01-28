@@ -1,8 +1,8 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import { prisma } from "./src/config/prisma.js";
-import app from "./src/app.js";
+import { prisma } from "./config/prisma.js";
+import app from "./app.js";
 
 async function main() {
   try {

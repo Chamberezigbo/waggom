@@ -27,6 +27,12 @@ app.use('/uploads', express.static('uploads', {
 }));
 
 app.get("/health", (_req, res) => res.json({ ok: true }));
+
+// 404 handler for unmatched routes
+app.use((req, res, next) => {
+  res.status(404).json({ error: "Not Found" });
+});
+
 app.use(errorHandler);
 
 export default app;

@@ -12,6 +12,6 @@ export async function createTestimony({
   photoUrl?: string | undefined; // <-- allow undefined
 }) {
   return prisma.testimony.create({
-    data: { name, email, message, photoUrl },
+    data: { name, email, message, photoUrl: photoUrl ?? null }, // <-- fix here
   });
 }

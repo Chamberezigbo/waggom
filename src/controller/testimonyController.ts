@@ -1,5 +1,6 @@
 import type { Request, Response, NextFunction } from 'express';
 import { createTestimony } from '../service/testimonyService.js';
+import { listTestimonies } from '../service/testimonyService.js';
 
 export const createTestimonyController = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -12,3 +13,12 @@ export const createTestimonyController = async (req: Request, res: Response, nex
     next(err);
   }
 };
+
+export const listTestimoniesController = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const data = await listTestimonies();
+    res.status(200).json({ success: true, data });
+  } catch (error) {
+    next(error);
+  }
+}

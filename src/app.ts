@@ -3,6 +3,7 @@ import cors from "cors";
 import authRouter from "./router/admin/adminRouter.js";
 import testimonyRouter from './router/testimonyRouter.js';
 import admissionRouter from './router/admissionRouter.js';
+import eventRouter from './router/eventRouter.js';
 import { errorHandler } from "./middleware/errorHandler.js";
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use("/api/admin", authRouter);
 app.use('/api/testimonies', testimonyRouter);
 app.use('/api/admissions', admissionRouter);
+app.use('/api/events', eventRouter);
 app.use('/uploads', express.static('uploads', { 
   // Optional: force inline display for images
   setHeaders: (res, path) => {

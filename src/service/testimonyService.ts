@@ -15,3 +15,10 @@ export async function createTestimony({
     data: { name, email, message, photoUrl: photoUrl ?? null }, // <-- fix here
   });
 }
+
+export async function listTestimonies() {
+  return prisma.testimony.findMany({
+    where: {status: 'approved'},
+    orderBy: { createdAt: 'desc' },
+  });
+}

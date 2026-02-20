@@ -218,6 +218,27 @@ paths:
                 properties:
                   success:
                     type: boolean
+  
+    /testimonies:
+    get:
+      summary: List all approved testimonies (public)
+      description: Returns all testimonies with status 'approved'.
+      tags: [Public]
+      responses:
+        '200':
+          description: List of approved testimonies
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TestimonyResponse'
+          
 
   /testimonies:
     post:
@@ -528,13 +549,23 @@ components:
     EventResponse:
       type: object
       properties:
-        id: { type: string }
-        title: { type: string }
-        date: { type: string, format: date-time }
-        location: { type: string }
-        description: { type: string }
-        createdAt: { type: string, format: date-time }
-        updatedAt: { type: string, format: date-time }
+        id:
+          type: string
+        title:
+          type: string
+        date:
+          type: string
+          format: date-time
+        location:
+          type: string
+        description:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
     TestimonyResponse:
       type: object
       properties:
@@ -548,6 +579,7 @@ components:
           type: string
         photoUrl:
           type: string
+        nullable: true
         status:
           type: string
           enum: [pending, approved, rejected]

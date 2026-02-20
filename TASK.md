@@ -24,17 +24,12 @@
 > - The foundation for automated testing, code generation, and documentation.
 
 ## 🔥 Immediate Focus
-- [ ] 
-- [ ]  
+- [ ] public endpoint for get all approved testimony 
+- [ ] public endpoint to get all event created by admin 
 - [ ]
 
 ## 🚧 In Progress
-- [ ] create endpoint to allow users apply for admission(Programme Level
-,Programme of Choice,Two (2) Recent Passport-Sized Photographs,Surname,Firstname,Title,Other Names,Date of Birth,Place of Birth,Gender,Present Residential Address,Email Address,Phone Number,Permanent Home Address (No P.O. Box),Postal Address,Nationality,Native Language,Is Place of Birth Different from Nationality?,Marital Status, Religion,Denomination,Name and Address of Parent/Guardian,Emergency Contact
- Name and Address,Phone Number, Next of Kin
-Name and Address Phone Number Educational Qualifications
-Please list all institutions attended, beginning with the most recent Institution Name, From dd/mm/yyyy To, Qualification / Certificate Obtained Professional Certificates (if any) Upload Certificates,Description (optional) Financial and Health Information How do you intend to finance your studies? *,Do you have any special needs or health condition? *, Please provide details of two referees (one academic and one clergy)Academic Referee Full Name *, Profession *, Institution / Organization *,Address *,Phone Number *, Email Address *,2. Clergy Referee Full Name *,Position * Church / Ministry *,Address *, Phone Number *, Email Address *, Declaration Applicant’s Signature * enter full name, Date *
-)
+- [ ] 
 - [ ] 
 - [ ] 
 
@@ -52,6 +47,12 @@ Please list all institutions attended, beginning with the most recent Institutio
 - [x]create endpoint for users to share testimony name,contact email, testimony and photo without auth(save the photo in upload folder then url to db and handle the folder to be public  )
 - [x] setup a build to init ang generate prisma for cPanel and mysql environment for build command 
 - [x] create endpoint for admin to view approve reject delete admission request
+- [x] create endpoint to allow users apply for admission(Programme Level
+,Programme of Choice,Two (2) Recent Passport-Sized Photographs,Surname,Firstname,Title,Other Names,Date of Birth,Place of Birth,Gender,Present Residential Address,Email Address,Phone Number,Permanent Home Address (No P.O. Box),Postal Address,Nationality,Native Language,Is Place of Birth Different from Nationality?,Marital Status, Religion,Denomination,Name and Address of Parent/Guardian,Emergency Contact
+ Name and Address,Phone Number, Next of Kin
+Name and Address Phone Number Educational Qualifications
+Please list all institutions attended, beginning with the most recent Institution Name, From dd/mm/yyyy To, Qualification / Certificate Obtained Professional Certificates (if any) Upload Certificates,Description (optional) Financial and Health Information How do you intend to finance your studies? *,Do you have any special needs or health condition? *, Please provide details of two referees (one academic and one clergy)Academic Referee Full Name *, Profession *, Institution / Organization *,Address *,Phone Number *, Email Address *,2. Clergy Referee Full Name *,Position * Church / Ministry *,Address *, Phone Number *, Email Address *, Declaration Applicant’s Signature * enter full name, Date *
+)
 
 ```
 

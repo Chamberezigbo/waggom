@@ -1,5 +1,8 @@
 import express from "express";
 import cors from "cors";
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./config/swagger.js";
+
 import authRouter from "./router/admin/adminRouter.js";
 import testimonyRouter from './router/testimonyRouter.js';
 import admissionRouter from './router/admissionRouter.js';
@@ -15,6 +18,8 @@ app.use(cors({
 }));
 
 app.use(express.json());
+// Swagger endpoint
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/api/admin", authRouter);
 app.use('/api/testimonies', testimonyRouter);
 app.use('/api/admissions', admissionRouter);
@@ -27,6 +32,11 @@ app.use('/uploads', express.static('uploads', {
     }
   }
 }));
+
+// Optional: raw JSON for Postman
+app.get("/api-docs-json", (req, res) => {
+  res.json(swaggerSpec);
+});
 
 app.get("/health", (_req, res) => res.json({ ok: true }));
 

@@ -13,7 +13,7 @@ const options = {
         url: "http://localhost:3000",
       },
       {
-        url: "https://api.waggom.org/",
+        url: "https://api.waggom.org/api/",
       },
     ],
   },

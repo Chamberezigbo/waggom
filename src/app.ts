@@ -7,6 +7,8 @@ import authRouter from "./router/admin/adminRouter.js";
 import testimonyRouter from './router/testimonyRouter.js';
 import admissionRouter from './router/admissionRouter.js';
 import eventRouter from './router/eventRouter.js';
+import studentRouter from './router/studentRouter.js'
+import contactRouter from './router/contactRouter.js'
 import { errorHandler } from "./middleware/errorHandler.js";
 
 const app = express();
@@ -21,9 +23,11 @@ app.use(express.json());
 // Swagger endpoint
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/api/admin", authRouter);
+app.use("/api/students", studentRouter);
 app.use('/api/testimonies', testimonyRouter);
 app.use('/api/admissions', admissionRouter);
 app.use('/api/events', eventRouter);
+app.use('/api/contact-us', contactRouter);
 app.use('/uploads', express.static('uploads', { 
   // Optional: force inline display for images
   setHeaders: (res, path) => {

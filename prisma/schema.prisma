@@ -25,7 +25,7 @@ model News {
   title     String
   summary   String?
   category  String?
-  body      String
+  body      String @db.Text
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

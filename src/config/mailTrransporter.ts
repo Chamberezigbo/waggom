@@ -10,8 +10,8 @@ export const mailer = nodemailer.createTransport({
   host: requiredEnv("MAIL_HOST"),
   port: Number(requiredEnv("MAIL_PORT")),
   secure: requiredEnv("MAIL_SECURE") === "true",
-  auth: {
-    user: requiredEnv("MAIL_USER"),
-    pass: requiredEnv("MAIL_PASS"),
+  auth: { user: requiredEnv("MAIL_USER"), pass: requiredEnv("MAIL_PASS") },
+  tls: {
+    servername: process.env.MAIL_TLS_SERVERNAME ?? process.env.MAIL_HOST,
   },
 });

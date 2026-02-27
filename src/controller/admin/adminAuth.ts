@@ -6,7 +6,7 @@ import { UnauthorizedError } from '../../utils/AppError.js';
 
 export const adminController =  async (req: express.Request, res: express.Response, next: express.NextFunction) => {
     try {
-            const { email, password } = req.body as AdminLoginDto;
+    const { email, password } = req.body as AdminLoginDto;
 
     if (!email || !password) {
         throw new UnauthorizedError('Email and password are required');

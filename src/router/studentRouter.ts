@@ -89,33 +89,51 @@ router.post('/login', studentLoginController);
  * @swagger
  * /students/news:
  *   get:
- *     summary: Get news for authenticated student
- *     description: Returns news items where category is `student`. Only approved admissions can access.
+ *     summary: Get news for authenticated students (all categories)
+ *     description: Returns news with pagination. Optionally filter by one or more categories.
  *     tags: [Students]
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema: { type: integer, example: 1 }
+ *         description: Page number (1-based)
+ *       - in: query
+ *         name: pageSize
+ *         schema: { type: integer, example: 10 }
+ *         description: Items per page (max 50)
+ *       - in: query
+ *         name: categories
+ *         schema: { type: string, example: "student,academics" }
+ *         description: Comma-separated categories to include (OR filter)
+ *       - in: query
+ *         name: search
+ *         schema: { type: string, example: "portal" }
+ *         description: Search in title/summary
  *     responses:
  *       200:
- *         description: Student news fetched successfully
+ *         description: News fetched successfully
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
- *                 success: { type: boolean, example: true }
+ *                 success: { type: boolean }
+ *                 meta:
+ *                   type: object
+ *                   properties:
+ *                     page: { type: integer }
+ *                     pageSize: { type: integer }
+ *                     total: { type: integer }
+ *                     totalPages: { type: integer }
+ *                     categories: { type: array, items: { type: string }, nullable: true }
+ *                     search: { type: string, nullable: true }
  *                 data:
  *                   type: array
- *                   items:
- *                     type: object
+ *                   items: { type: object }
  *       401:
  *         description: Unauthorized (missing/invalid token or admission pending/rejected)
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 success: { type: boolean, example: false }
- *                 message: { type: string }
  */
 router.get('/news', requireStudent, getStudentNewsController);
 

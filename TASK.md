@@ -26,8 +26,7 @@
 - The foundation for **automated testing**, **code generation**, and **documentation**.
 
 ## 🔥 Immediate Focus
-- [ ] create student login wit just email (if admistion status is still pending or reected return message your admisstion is still pending if reected say so )
-- [ ] get news for auth student, news with category of student 
+- [ ] work on getting student get event with pagination 
 
 ## 🚧 In Progress
 - [ ] setup receiving email for contact us when a user fill the contact us email form (fullname,Email address and Message these are form input)
@@ -57,6 +56,8 @@ Please list all institutions attended, beginning with the most recent Institutio
 
 - [x]public endpoint for get all approved testimony 
 - [x ] public endpoint to get all event created by admin 
+- [x]create student login wit just email (if admistion status is still pending or reected return message your admisstion is still pending if reected say so )
+- [x] get news for auth student, news with category of student
 
 ```
 
